@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "85bd05a6-529e-4cda-b9b7-1d2399f848a3",
+		"name": "API Chaining Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34779269"
+	},
+	"item": [
+		{
+			"name": "RESTAPICHAINING",
+			"item": [
+				{
+					"name": "update user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Get the body of the API\r",
+									"body_data = pm.response.json()\r",
+									"\r",
+									"//Display the output got\r",
+									"\r",
+									"console.log(body_data)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{Username1}}\",\r\n    \"job\": \"zion resident\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/users/2",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chaining API",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Get the body of the API\r",
+									"bodyData = pm.response.json()\r",
+									"\r",
+									"//Get the path for the name Rachel using the json pathfinder which is data[5].first_name in my case\r",
+									"\r",
+									"value = bodyData.data[5].first_name\r",
+									"\r",
+									"//Display the value using console.log\r",
+									"console.log(value)\r",
+									"\r",
+									"// Now set the environment variable value with the value that we got above\r",
+									"pm.environment.set(\"Username1\", value);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "https://reqres.in/api/users?page=2",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST chaining",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Get the body of the API\r",
+									"body = pm.response.json()\r",
+									"\r",
+									"//Display the output got\r",
+									"\r",
+									"console.log(body)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{Username1}}\",\r\n    \"job\": \"leader\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/users",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
