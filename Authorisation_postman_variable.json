@@ -1,0 +1,21 @@
+{
+	"id": "4ca76b52-446f-4875-966e-1dcd17c70096",
+	"name": "APIChainingVariables",
+	"values": [
+		{
+			"key": "Username1",
+			"value": "ABC",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "Token",
+			"value": "Add your token",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2024-05-24T10:42:28.298Z",
+	"_postman_exported_using": "Postman/11.1.13"
+}
